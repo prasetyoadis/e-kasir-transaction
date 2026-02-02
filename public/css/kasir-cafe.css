@@ -1,0 +1,547 @@
+:root {
+    --color-warm-white: #fffef9;
+    --color-gold: #f4c430;
+    --color-gold-hover: #d4a820;
+    --color-leaf-green: #6b8e43;
+    --color-earth-brown: #8b7e66;
+    --color-deep-dark: #2f2f2a;
+    --color-clay-red: #c2433d;
+    --bg-gray: #f4f6f8;
+    --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --border-radius: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+body {
+    background-color: var(--bg-gray);
+    color: var(--color-deep-dark);
+    height: 100vh;
+    overflow: hidden; /* Mencegah scroll body utama */
+}
+
+/* --- GRID LAYOUT UTAMA --- */
+.pos-container {
+    display: grid;
+    grid-template-rows: 70px 1fr; /* Header setinggi 70px, sisanya konten */
+    height: 100vh;
+}
+
+/* --- HEADER --- */
+.pos-header {
+    background: var(--color-warm-white);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+    z-index: 10;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand .logo {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-earth-brown);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.brand-info h1 {
+    font-size: 1.2rem;
+    color: var(--color-deep-dark);
+}
+
+.brand-info span {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* Mengatur agar bagian tengah benar-benar presisi di tengah */
+.header-center {
+    flex: 1; /* Memberikan ruang fleksibel */
+    display: flex;
+    justify-content: center; /* Memastikan isi div ini berada di tengah */
+}
+
+.center-logo {
+    background-color: var(--color-earth-brown);
+    height: 50px; /* Sesuaikan ukuran logo tengah Anda */
+    width: auto;
+    border-radius: 50px;
+}
+
+.search-bar {
+    position: relative;
+    width: 300px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px 15px 10px 40px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    outline: none;
+}
+
+.search-bar i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+}
+
+/* --- MAIN CONTENT (3 COLUMNS) --- */
+.pos-content {
+    display: grid;
+    grid-template-columns: 240px 1fr 350px; /* Sidebar - Grid - Order Panel */
+    height: calc(100vh - 70px);
+    overflow: hidden;
+}
+
+/* 1. Sidebar Kategori */
+.sidebar-category {
+    background: var(--color-warm-white);
+    border-right: 1px solid #eee;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.category-group {
+    margin-bottom: 24px;
+}
+
+.category-group h3 {
+    font-size: 0.9rem;
+    color: var(--color-gold);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.sidebar-category ul {
+    list-style: none;
+}
+
+.sidebar-category li {
+    padding: 10px 12px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #666;
+    transition: 0.2s;
+    font-size: 0.95rem;
+}
+
+.sidebar-category li:hover,
+.sidebar-category li.active {
+    background-color: #fff8e1; /* Light yellow */
+    color: var(--color-deep-dark);
+    font-weight: 600;
+    border-left: 4px solid var(--color-gold);
+}
+
+/* 2. Menu Grid */
+.menu-grid-container {
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.menu-card {
+    background: var(--color-warm-white);
+    border-radius: var(--border-radius);
+    padding: 15px;
+    box-shadow: var(--shadow-card);
+    cursor: pointer;
+    transition: transform 0.2s;
+    text-align: center;
+    border: 1px solid transparent;
+}
+
+.menu-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-gold);
+}
+
+.menu-card img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.menu-card h4 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: var(--color-deep-dark);
+}
+
+.menu-card .price {
+    font-weight: bold;
+    color: var(--color-gold);
+    font-size: 1.1rem;
+}
+
+/* 3. Order Panel */
+.order-panel {
+    background: var(--color-warm-white);
+    border-left: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.order-header {
+    padding: 20px;
+    border-bottom: 1px dashed #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-header h2 {
+    font-size: 1.2rem;
+    color: var(--color-deep-dark);
+}
+
+.order-no {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.customer-input {
+    padding: 10px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.customer-input input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid #ddd;
+    padding: 5px 0;
+    outline: none;
+    font-size: 0.95rem;
+}
+
+/* List Order Scrollable */
+.order-list-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px 20px;
+}
+
+.order-list {
+    list-style: none;
+}
+
+.order-item {
+    display: grid;
+    grid-template-columns: 50px 1fr auto;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #eee;
+    animation: fadeIn 0.3s ease;
+}
+
+.order-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.item-details h4 {
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+}
+
+.item-details .item-price {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.item-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.qty-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f0f0f0;
+    padding: 2px 8px;
+    border-radius: 6px;
+}
+
+.btn-qty {
+    background: var(--color-gold);
+    color: white;
+    border: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-delete {
+    background: none;
+    border: none;
+    color: var(--color-clay-red);
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+/* Summary Footer */
+.order-summary {
+    padding: 20px;
+    background: #fafafa;
+    border-top: 1px solid #eee;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.summary-row.total {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--color-deep-dark);
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.action-buttons {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 10px;
+}
+
+.btn-print {
+    background: white;
+    border: 2px solid var(--color-gold);
+    color: var(--color-gold);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.btn-order {
+    background: var(--color-gold);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-order:hover {
+    background: var(--color-gold-hover);
+}
+
+/* --- MODAL --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--color-warm-white);
+    padding: 25px;
+    border-radius: 16px;
+    width: 400px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.3s ease;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.text-gold {
+    color: var(--color-gold);
+}
+.text-lg {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.payment-methods {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.method-btn {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.method-btn.active {
+    border-color: var(--color-gold);
+    background: #fff8e1;
+    color: var(--color-gold);
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+.input-lg {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-cancel {
+    padding: 10px 20px;
+    border: none;
+    background: #eee;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.btn-confirm {
+    padding: 10px 20px;
+    border: none;
+    background: var(--color-gold);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* --- RESPONSIVE MOBILE / TABLET --- */
+@media (max-width: 1024px) {
+    .pos-content {
+        grid-template-columns: 200px 1fr 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .pos-container {
+        display: block;
+        height: auto;
+        overflow-y: auto;
+    }
+
+    .pos-content {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .sidebar-category {
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .category-group {
+        margin-right: 20px;
+        margin-bottom: 0;
+    }
+
+    .category-group ul {
+        display: flex;
+        gap: 10px;
+    }
+
+    .menu-grid-container {
+        height: auto;
+    }
+
+    .order-panel {
+        border-left: none;
+        border-top: 4px solid var(--color-gold);
+        height: auto;
+    }
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

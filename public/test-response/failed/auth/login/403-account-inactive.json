@@ -1,0 +1,9 @@
+{
+    "statusCode": 403,
+    "statusMessage": "Forbidden",
+    "statusDescription": "Access denied",
+    "result": {
+        "errorCode": "16",
+        "errorMessage": "Account is inactive"
+    }
+}

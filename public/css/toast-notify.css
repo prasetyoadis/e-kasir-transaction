@@ -1,0 +1,89 @@
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.toast {
+    min-width: 320px;
+    max-width: 400px;
+    background: white;
+    padding: 16px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    transform: translateX(120%);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+}
+
+.toast.show { transform: translateX(0); }
+
+.toast-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.success-toast { border-left: 6px solid #10b981; }
+.success .toast-icon { background: #d1fae5; color: #10b981; }
+
+.warning-toast { border-left: 6px solid #f59e0b; }
+.warning .toast-icon { background: #fef3c7; color: #f59e0b; }
+
+.error-toast { border-left: 6px solid #ef4444; }
+.error .toast-icon { background: #fee2e2; color: #ef4444; }
+
+.toast-content { flex-grow: 1; }
+.toast-title { font-weight: bold; font-size: 0.95rem; color: #1f2937; display: block; }
+.toast-message { font-size: 0.85rem; color: #6b7280; }
+
+.toast-close {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+/* Progress Bar Animasi */
+.progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background: rgba(0,0,0,0.1);
+}
+.progress::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: inherit;
+    animation: progress 5s linear forwards;
+}
+.success .progress::before { background: #10b981; }
+.warning .progress::before { background: #f59e0b; }
+.error .progress::before { background: #ef4444; }
+
+@keyframes progress {
+    from { width: 100%; }
+    to { width: 0%; }
+}
+.toast.show .progress::before {
+    animation: progress 5s linear forwards;
+}

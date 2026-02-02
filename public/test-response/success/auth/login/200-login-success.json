@@ -1,0 +1,26 @@
+{
+    "statusCode": 200,
+    "statusMessage": "OK",
+    "statusDescription": "Request processed successfully",
+    "result": {
+        "errorCode": "03",
+        "errorMessage": "User login successfully",
+        "data" : {
+            "token" : {
+                "access_token": "stringToken",
+                "token_type": "bearer",
+                "expired_at": 72000
+            },
+            "user": {
+                "id": "f8b228a7-03e7-491d-ba48-c6ec625bb335",
+                "roles": [
+                    "admin"
+                ],
+                "flags": {
+                    "has_subscription": true,
+                    "has_outlet": true
+                }
+            }
+        }
+    }
+}

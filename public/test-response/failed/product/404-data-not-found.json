@@ -1,0 +1,9 @@
+{
+    "statusCode": 404,
+    "statusMessage": "Not Found",
+    "statusDescription": "The requested resource was not found on the server",
+    "result": {
+        "errorCode": "40",
+        "errorMessage": "Data not found"
+    }
+}

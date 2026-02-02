@@ -1,0 +1,698 @@
+/* =========================================
+   1. COLOR PALETTE & GLOBAL SETTINGS
+   ========================================= */
+:root {
+    --color-warm-white: #fffef9;
+    --color-gold: #f4c430;
+    --color-leaf-green: #6b8e43;
+    --color-earth-brown: #8b7e66;
+    --color-deep-dark: #2f2f2a;
+    --color-clay-red: #c2433d;
+
+    /* Variabel turunan untuk border ringan */
+    --color-border-light: rgba(139, 126, 102, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    background-color: var(--color-warm-white);
+    color: var(--color-deep-dark);
+    overflow: hidden; /* Mencegah scroll pada body utama */
+    height: 100vh;
+}
+
+/* =========================================
+   2. LAYOUT UTAMA (Flexbox)
+   ========================================= */
+.app-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+    width: 250px;
+    background: linear-gradient(120deg, #5d5d5d, var(--color-earth-brown));
+    color: var(--color-warm-white);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    border-right: 1px solid var(--color-deep-dark);
+}
+
+.brand {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(120deg, var(--color-deep-dark), #5d5d5d);
+}
+
+.brand img {
+    height: 50px;
+    width: 50px;
+}
+.brand i {
+    margin-right: 10px;
+    color: var(--color-gold); /* Aksen Gold pada Logo */
+}
+
+.brand i {
+    margin-right: 10px;
+    color: #3498db;
+}
+
+.nav-menu {
+    padding: 10px;
+}
+
+.nav-item {
+    display: block;
+    padding: 12px 15px;
+    color: rgba(255, 254, 249, 0.7); /* Warm white agak transparan */
+    text-decoration: none;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    transition: 0.2s;
+}
+
+.nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--color-gold);
+}
+
+.nav-item.active {
+    background-color: var(--color-gold); /* Warna aktif earthy */
+    color: var(--color-warm-white);
+}
+
+.nav-item i {
+    width: 25px;
+    text-align: center;
+    margin-right: 5px;
+}
+
+/* --- MAIN CONTENT --- */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-warm-white);
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* --- HEADER --- */
+.top-header {
+    height: 60px;
+    background-color: var(--color-warm-white);
+    border-bottom: 1px solid var(--color-border-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    flex-shrink: 0;
+}
+
+.top-header h2 {
+    font-size: 1.2rem;
+    color: var(--color-deep-dark);
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.notification-icon {
+    color: var(--color-earth-brown);
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.avatar {
+    width: 35px;
+    height: 35px;
+    background-color: var(--color-earth-brown);
+    color: var(--color-warm-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.name {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-deep-dark);
+}
+
+/* =========================================
+   3. SCROLLABLE AREA (Input + Table)
+   ========================================= */
+.content-scrollable {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+    padding-bottom: 10px;
+}
+
+/* --- TOP INPUT CARDS --- */
+.input-section {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.card {
+    background: #fff; /* Tetap putih bersih agar kontras dengan input */
+    padding: 15px;
+    border: 1px solid var(--color-border-light);
+    border-top: 3px solid var(--color-earth-brown);
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(47, 47, 42, 0.05);
+}
+
+.card.highlight-card {
+    border-top-color: var(--color-earth-brown);
+}
+.card.invoice-card {
+    border-top-color: var(--color-earth-brown);
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+.form-group label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: var(--color-earth-brown);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--color-earth-brown); /* Border coklat tanah */
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: var(--color-deep-dark);
+    background-color: #fff;
+}
+
+/* Efek Fokus Input */
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--color-leaf-green);
+    box-shadow: 0 0 0 2px rgba(107, 142, 67, 0.2);
+}
+
+.readonly {
+    background-color: rgba(139, 126, 102, 0.1); /* Earth brown transparan */
+    cursor: not-allowed;
+}
+
+/* Group Input Search */
+.input-group {
+    display: flex;
+}
+.input-group input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.btn-search {
+    background: rgba(139, 126, 102, 0.1);
+    border: 1px solid var(--color-earth-brown);
+    border-left: 0;
+    padding: 0 15px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    cursor: pointer;
+    color: var(--color-deep-dark);
+}
+
+/* Group Qty & Button */
+.row-group {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+}
+.qty-group {
+    width: 80px;
+    margin-bottom: 0;
+}
+.qty-group input {
+    text-align: center;
+    font-weight: bold;
+}
+
+.btn-add {
+    flex-grow: 1;
+    background-color: var(--color-leaf-green);
+    color: white;
+    border: none;
+    padding: 9px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.btn-add:hover {
+    background-color: #5a7a38;
+} /* Hijau lebih gelap */
+
+/* Invoice & Big Total */
+.invoice-info .label {
+    font-size: 0.8rem;
+    color: var(--color-earth-brown);
+    display: block;
+}
+.invoice-info .value {
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 1rem;
+    color: var(--color-deep-dark);
+}
+
+.grand-total-display .label {
+    font-size: 0.8rem;
+    color: var(--color-earth-brown);
+    display: block;
+}
+.grand-total-display .value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--color-leaf-green); /* Angka Total Hijau */
+    line-height: 1;
+}
+
+/* =========================================
+   4. TABLE SECTION
+   ========================================= */
+.table-section {
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid var(--color-border-light);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.pos-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.pos-table th,
+.pos-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--color-border-light);
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.pos-table th {
+    background-color: rgba(139, 126, 102, 0.1); /* Latar header tabel */
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: var(--color-deep-dark);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.pos-table .text-right {
+    text-align: right;
+}
+.pos-table .text-center {
+    text-align: center;
+}
+
+/* Buttons in table */
+.btn-edit,
+.btn-delete {
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin: 0 2px;
+}
+.btn-edit {
+    background: rgba(244, 196, 48, 0.2);
+    color: #b58900;
+}
+.btn-delete {
+    background: rgba(194, 67, 61, 0.1);
+    color: var(--color-clay-red);
+}
+
+/* =========================================
+   5. PAYMENT FOOTER
+   ========================================= */
+.payment-footer {
+    background: var(--color-warm-white);
+    border-top: 1px solid var(--color-border-light);
+    padding: 15px 20px;
+    flex-shrink: 0;
+    box-shadow: 0 -2px 10px rgba(47, 47, 42, 0.05);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    gap: 30px;
+}
+
+/* Kolom 1: Total Text */
+.row-between {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: var(--color-deep-dark);
+}
+.row-between.grand-row {
+    border-top: 1px solid var(--color-border-light);
+    margin-top: 8px;
+    padding-top: 8px;
+    font-size: 1.1rem;
+}
+.bold {
+    font-weight: bold;
+}
+
+.text-red {
+    color: var(--color-clay-red);
+}
+.text-blue {
+    color: var(--color-leaf-green);
+} /* Grand Total di Footer jadi Hijau */
+
+/* Kolom 2: Inputs */
+.input-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.input-row label {
+    width: 100px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-earth-brown);
+}
+.input-row input {
+    font-weight: bold;
+    text-align: right;
+    font-size: 1.1rem;
+}
+#cash_input {
+    border: 2px solid var(--color-earth-brown);
+}
+#cash_input:focus {
+    border-color: var(--color-leaf-green);
+}
+#change_input {
+    background: rgba(139, 126, 102, 0.1);
+    border: 1px solid var(--color-border-light);
+    color: var(--color-deep-dark);
+}
+
+/* Kolom 3: Actions */
+.actions-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#txn_note {
+    height: 38px;
+    margin-bottom: 10px;
+    resize: none;
+    font-size: 0.85rem;
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+}
+.btn-cancel,
+.btn-process {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #fff;
+}
+
+.btn-cancel {
+    background-color: red;
+}
+.btn-cancel:hover {
+    background-color: red;
+}
+
+.btn-process {
+    background-color: var(--color-leaf-green);
+    color: white;
+}
+.btn-process:hover {
+    background-color: #5a7a38;
+}
+
+/* =========================================
+   6. RESPONSIVE MEDIA QUERIES
+   ========================================= */
+
+/* --- TABLET & IPAD (Max 1024px) --- */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 70px;
+        transition: width 0.3s;
+    }
+    .brand-text,
+    .nav-text {
+        display: none;
+    }
+    .brand {
+        justify-content: center;
+    }
+    .brand i {
+        margin-right: 0;
+    }
+    .nav-item {
+        text-align: center;
+        padding: 15px 5px;
+    }
+    .nav-item i {
+        margin-right: 0;
+        font-size: 1.2rem;
+    }
+
+    .input-section {
+        grid-template-columns: 1fr 1fr;
+    }
+    .card.highlight-card {
+        grid-column: span 2;
+        order: -1;
+    }
+    .footer-grid {
+        gap: 15px;
+        grid-template-columns: 0.8fr 1.2fr 1fr;
+    }
+}
+
+/* --- MOBILE & ANDROID (Max 768px) --- */
+@media (max-width: 768px) {
+    .app-container {
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    .top-header {
+        padding: 0 10px;
+        height: 50px;
+    }
+    .top-header h2 {
+        font-size: 1rem;
+        margin-left: 10px;
+    }
+    .user-info .name {
+        display: none;
+    }
+    .mobile-menu-btn {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        color: var(--color-deep-dark);
+        cursor: pointer;
+    }
+    .header-left {
+        display: flex;
+        align-items: center;
+    }
+
+    .sidebar {
+        position: absolute;
+        left: -100%;
+        top: 0;
+        height: 100%;
+        width: 260px;
+        z-index: 1000;
+        transition: left 0.3s ease;
+    }
+    .sidebar.active {
+        left: 0;
+    }
+    .brand-text,
+    .nav-text {
+        display: inline;
+    }
+    .brand {
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+    .nav-item {
+        text-align: left;
+        padding: 12px 15px;
+    }
+    .nav-item i {
+        margin-right: 10px;
+    }
+
+    .close-sidebar-btn {
+        display: block;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.2rem;
+    }
+
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(47, 47, 42, 0.7);
+        z-index: 999;
+    }
+
+    .content-scrollable {
+        padding: 10px;
+    }
+    .input-section {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .card {
+        padding: 10px;
+    }
+    .grand-total-display .value {
+        font-size: 2rem;
+    }
+
+    .table-section {
+        overflow-x: auto;
+    }
+    .pos-table th,
+    .pos-table td {
+        padding: 8px 5px;
+        font-size: 0.8rem;
+    }
+    .pos-table th:nth-child(2),
+    .pos-table td:nth-child(2) {
+        display: none;
+    }
+
+    .payment-footer {
+        padding: 10px;
+        height: auto;
+        max-height: 40vh;
+        overflow-y: auto;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .totals-col {
+        order: 1;
+        border-bottom: 1px dashed var(--color-border-light);
+        padding-bottom: 5px;
+    }
+    .inputs-col {
+        order: 2;
+    }
+    .actions-col {
+        order: 3;
+    }
+
+    .row-between {
+        font-size: 0.8rem;
+    }
+    .row-between.grand-row {
+        font-size: 1rem;
+    }
+    .input-row label {
+        width: 80px;
+        font-size: 0.8rem;
+    }
+    .input-row input {
+        padding: 5px;
+        font-size: 1rem;
+    }
+    .btn-group {
+        margin-top: 5px;
+    }
+    .btn-cancel,
+    .btn-process {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+    #txn_note {
+        display: none;
+    }
+}
+
+.mobile-menu-btn,
+.close-sidebar-btn {
+    display: none;
+}

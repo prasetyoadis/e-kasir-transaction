@@ -1,0 +1,51 @@
+{
+    "statusCode": 200,
+    "statusMessage": "OK",
+    "statusDescription": "Request processed successfully",
+    "result": {
+        "errorCode": "31",
+        "errorMessage": "Data retrieved successfully",
+        "data": {
+            "id": "f8b228a7-03e7-491d-ba48-c6ec625bb335",
+            "name": "Petugas Kasir",
+            "email": "petugaskasir@gmail.com",
+            "msisdn": "+6281345678899",
+            "is_active": true,
+            "subscriptions": [
+                {
+                    "subscription_id": "a0b6fd97-4abb-4946-9bd5-e3f7acea668a",
+                    "subscription_type": 1,
+                    "subscription_outlets": [
+                        {
+                            "id": "a0b6fd97-4ef3-4f94-8eb7-e7cdfb221ac6",
+                            "name": "Toko Satu",
+                            "address": "Jln Sudirman No.1, Jakarta",
+                            "msisdn": "+628345356777",
+                            "type" : "f&b",
+                            "is_active": true,
+                            "created_at": "2025-12-30T06:59:50.000000Z",
+                            "updated_at": "2025-12-30T06:59:50.000000Z"
+                        }
+                    ],
+                    "subscription_status": "active",
+                    "valid_from": "2025-12-30T06:59:50.000000Z",
+                    "valid_to": "2026-01-29T06:59:50.000000Z"
+                }
+            ],
+            "roles": [
+                {
+                    "slug": "cashier",
+                    "permissions": [
+                            "product.view",
+                            "product.update",
+                            "inventory.view",
+                            "inventory.update",
+                            "transaction.create"
+                    ]
+                }
+            ],
+            "created_at": "2025-12-30T06:59:49.000000Z",
+            "updated_at": "2025-12-30T06:59:49.000000Z"
+        }
+    }
+}
