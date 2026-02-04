@@ -80,8 +80,7 @@ body {
 }
 
 .center-logo {
-    background-color: var(--color-earth-brown);
-    height: 50px; /* Sesuaikan ukuran logo tengah Anda */
+    height: 90px; /* Sesuaikan ukuran logo tengah Anda */
     width: auto;
     border-radius: 50px;
 }
