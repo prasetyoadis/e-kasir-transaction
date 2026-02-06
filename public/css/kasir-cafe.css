@@ -544,3 +544,87 @@ body {
         opacity: 1;
     }
 }
+/* ========================
+   PRINT RECEIPT STYLES
+   ======================== */
+@media print {
+    /* Sembunyikan SEMUA elemen website saat print */
+    body * {
+        visibility: hidden;
+        height: 0;
+        overflow: hidden;
+    }
+
+    /* Hanya tampilkan area struk */
+    #receipt-area,
+    #receipt-area * {
+        visibility: visible;
+        height: auto;
+    }
+
+    #receipt-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: white;
+    }
+
+    @page {
+        margin: 0;
+        size: auto; /* Atau size: 58mm auto; jika printer thermal */
+    }
+}
+
+/* Tampilan Preview Struk (Hidden secara default) */
+.receipt {
+    width: 58mm; /* Ukuran kertas thermal */
+    margin: 0 auto;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 12px;
+    color: #000;
+    padding: 10px;
+    background: #fff;
+}
+.receipt-header,
+.receipt-footer {
+    text-align: center;
+}
+.shop-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 0;
+    text-transform: uppercase;
+}
+.dashed-line {
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 5px 0;
+}
+.meta-row,
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3px;
+}
+.item-name {
+    font-weight: bold;
+    display: block;
+    margin-top: 5px;
+}
+.item-calc {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    font-size: 11px;
+}
+.total-row {
+    font-weight: bold;
+    border-top: 1px dashed #000;
+    margin-top: 5px;
+    padding-top: 5px;
+    font-size: 14px;
+}

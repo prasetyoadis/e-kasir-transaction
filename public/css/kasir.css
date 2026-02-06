@@ -696,3 +696,100 @@ textarea:focus {
 .close-sidebar-btn {
     display: none;
 }
+/* ========================
+   PRINT STYLES (RETAIL)
+   ======================== */
+@media print {
+    body * {
+        visibility: hidden;
+        height: 0;
+    }
+
+    #receipt-area,
+    #receipt-area * {
+        visibility: visible;
+        height: auto;
+    }
+
+    #receipt-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    @page {
+        margin: 0;
+        size: auto;
+    }
+}
+
+/* Desain Struk Minimarket */
+.receipt {
+    width: 58mm; /* Standar struk kecil */
+    font-family: "Courier New", Courier, monospace;
+    font-size: 11px;
+    background: #fff;
+    color: #000;
+    padding: 5px;
+}
+
+.receipt-header {
+    text-align: center;
+    margin-bottom: 5px;
+}
+.shop-name {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+}
+.address,
+.phone {
+    font-size: 9px;
+    margin: 2px 0;
+}
+
+.dashed-line {
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 3px 0;
+    font-weight: bold;
+}
+
+.meta-row,
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2px;
+}
+
+/* Styling Item Belanja */
+.rec-item {
+    margin-bottom: 4px;
+}
+.rec-item-name {
+    display: block;
+    font-weight: bold;
+}
+.rec-item-calc {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px; /* Indentasi harga */
+}
+
+.total-row {
+    font-size: 13px;
+    font-weight: bold;
+    border-top: 1px dashed #000;
+    padding-top: 5px;
+    margin-top: 5px;
+}
+
+.receipt-footer {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 9px;
+}

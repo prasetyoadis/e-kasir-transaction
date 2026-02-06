@@ -120,6 +120,38 @@
     </div>
 
     <script src="{{ asset('js/dashboard/cashier/kasir-cafe.js') }}"></script>
+
+
+    <div id="receipt-area" style="display: none;">
+        <div class="receipt">
+            <div class="receipt-header">
+                <h2 class="shop-name">KASSIA CAFE</h2>
+                <p style="font-size:10px;">Jl. Kopi Nikmat No. 1<br>Jakarta Selatan</p>
+            </div>
+            <div class="dashed-line">--------------------------------</div>
+            <div class="receipt-meta">
+                <div class="meta-row">
+                    <span id="receipt-date"></span>
+                    <span id="receipt-inv"></span>
+                </div>
+                <div class="meta-row"><span>Kasir: Admin</span><span>Umum</span></div>
+            </div>
+            <div class="dashed-line">--------------------------------</div>
+            <div id="receipt-items"></div> <div class="dashed-line">--------------------------------</div>
+            <div class="receipt-summary">
+                <div class="summary-row"><span>Subtotal</span><span id="receipt-subtotal">0</span></div>
+                <div class="summary-row total-row"><span>TOTAL</span><span id="receipt-grand-total">0</span></div>
+                <br>
+                <div class="summary-row"><span>Tunai</span><span id="receipt-cash">0</span></div>
+                <div class="summary-row"><span>Kembali</span><span id="receipt-change">0</span></div>
+            </div>
+            <div class="dashed-line">--------------------------------</div>
+            <div class="receipt-footer">
+                <p>Terima Kasih!</p>
+                <p>Powered by Kassia</p>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
