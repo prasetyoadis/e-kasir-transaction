@@ -8,12 +8,11 @@
         "data": [
             {
                 "id": "01kgpgtz4n49r96r0thpgrej93",
+                "sku": "SNJ-SBY-001",
                 "name": "Sego Njamoer Original Reguler",
                 "harga_jual": 18000,
                 "stock": 8,
-                "categories": [
-                    "Makanan"
-                ],
+                "categories": ["Makanan", "Menu Utama", "Pedas"],
                 "image": {
                     "url" : "../../asset/img/products/snj-sby-001.webp",
                     "alt" : "Sego Njamoer Original"
@@ -21,12 +20,11 @@
             },
             {
                 "id": "01kgrj376ebca57ys322we8dpr",
+                "sku": "SNJ-SBY-002",
                 "name": "Sego Njamoer Original Jumbo",
                 "harga_jual": 20000,
                 "stock": 8,
-                "categories": [
-                    "Makanan"
-                ],
+                "categories": ["Makanan", "Menu Utama", "Pedas"],
                 "image": {
                     "url" : "../../asset/img/products/snj-sby-001.webp",
                     "alt" : "Sego Njamoer Original"
@@ -34,13 +32,11 @@
             },
             {
                 "id": "01kgrxqg0f62h6ftbgayddm69x",
+                "sku": "SNJ-SBY-003",
                 "name": "Sego Njamoer Sambal Ijo Reguler",
                 "harga_jual": 18000,
                 "stock": 6,
-                "categories": [
-                    "Makanan",
-                    "Pedas"
-                ],
+                "categories": ["Makanan", "Menu Utama", "Pedas"],
                 "image": {
                     "url" : "../../asset/img/products/snj-sby-002.webp",
                     "alt" : "Sego Njamoer Sambal Ijo"
@@ -48,13 +44,11 @@
             },
             {
                 "id": "01kgrxqqpkvrtszahe5429x2cg",
+                "sku": "SNJ-SBY-004",
                 "name": "Sego Njamoer Sambal Ijo Pedas",
                 "harga_jual": 20000,
                 "stock": 5,
-                "categories": [
-                    "Makanan",
-                    "Pedas"
-                ],
+                "categories": ["Makanan", "Menu Utama", "Pedas"],
                 "image": {
                     "url" : "../../asset/img/products/snj-sby-002.webp",
                     "alt" : "Sego Njamoer Sambal Ijo"
@@ -62,12 +56,11 @@
             },
             {
                 "id": "01kgrxrp73s8xeby1xkbz844nn",
+                "sku": "SNJ-SBY-005",
                 "name": "Sego Njamoer Teriyaki Reguler",
                 "harga_jual": 20000,
                 "stock": 4,
-                "categories": [
-                    "Makanan"
-                ],
+                "categories": ["Makanan", "Menu Utama", "Jamur"],
                 "image": {
                     "url" : "../../asset/img/products/snj-sby-003.webp",
                     "alt" : "Sego Njamoer Teriyaki"
@@ -75,12 +68,11 @@
             },
             {
                 "id": "01kgrxtqh9t88h6a1kx1hq572z",
+                "sku": "SNJ-SBY-006",
                 "name": "Jamur Crispy Original Small",
                 "harga_jual": 12000,
                 "stock": 4,
-                "categories": [
-                    "Snack"
-                ],
+                "categories": ["Snack", "Jamur"],
                 "image": {
                     "url" : "../../asset/img/products/snj-sby-004.webp",
                     "alt" : "Jamur Crispy Original"
@@ -88,15 +80,134 @@
             },
             {
                 "id": "01kgrxvbvzkhnpz6br97ybx5qb",
+                "sku": "SNJ-SBY-007",
                 "name": "Jamur Crispy Original Large",
                 "harga_jual": 16000,
                 "stock": 8,
-                "categories": [
-                    "Snack"
-                ],
+                "categories": ["Snack", "Jamur"],
                 "image": {
                     "url" : "../../asset/img/products/snj-sby-004.webp",
                     "alt" : "Jamur Crispy Original"
+                }
+            },
+            {
+                "id": "01kgs68ty750kagaxktshy4fcy",
+                "sku": "SNJ-SBY-008",
+                "name": "Jamur Crispy Balado Pedas",
+                "harga_jual": 30000,
+                "stock": 0,
+                "categories": ["Snack", "Jamur"],
+                "image": {
+                    "url" : "../../asset/img/products/snj-sby-005.webp",
+                    "alt" : "Jamur Crispy Balado"
+                }
+            },
+            {
+                "id": "01kgs68ty7brebbehrpak9rycm",
+                "sku": "SNJ-SBY-009",
+                "name": "Jamur Crispy Balado Extra Pedas",
+                "harga_jual": 30000,
+                "stock": 0,
+                "categories": ["Snack", "Jamur"],
+                "image": {
+                    "url" : "../../asset/img/products/snj-sby-005.webp",
+                    "alt" : "Jamur Crispy Balado"
+                }
+            },
+            {
+                "id": "01kgs68ty7gd67p0xqz4cy1hhp",
+                "sku": "SNJ-SBY-008",
+                "name": "Jamur Saus BBQ Pedas",
+                "harga_jual": 20000,
+                "stock": 3,
+                "categories": ["Snack", "Jamur"],
+                "image": {
+                    "url" : "../../asset/img/products/no_image.jpg",
+                    "alt" : "Jamur Saus BBQ"
+                }
+            },
+            {
+                "id": "01kgs68ty776apkeabh9nv0ked",
+                "sku": "SNJ-SBY-009",
+                "name": "Jamur Saus BBQ Extra Pedas",
+                "harga_jual": 24000,
+                "stock": 3,
+                "categories": ["Snack", "Jamur"],
+                "image": {
+                    "url" : "../../asset/img/products/no_image.jpg",
+                    "alt" : "Jamur Saus BBQ"
+                }
+            },
+            {
+                "id": "01kgs68ty7sj24qyp8h3t2y6a1",
+                "sku": "SNJ-SBY-010",
+                "name": "Nasi Putih",
+                "harga_jual": 10000,
+                "stock": 36,
+                "categories": ["Tambahan"],
+                "image": {
+                    "url" : "../../asset/img/products/no_image.jpg",
+                    "alt" : "Nasi putih"
+                }
+            },
+            {
+                "id": "01kgs68ty7jvrvytbawa8td44w",
+                "sku": "SNJ-SBY-011",
+                "name": "Es Teh Manis",
+                "harga_jual": 6000,
+                "stock": 35,
+                "categories": ["Minuman"],
+                "image": {
+                    "url" : "../../asset/img/products/es-teh.jpg",
+                    "alt" : "Es Teh"
+                }
+            },
+            {
+                "id": "01kgs68ty7enqnveh142cwcqe7",
+                "sku": "SNJ-SBY-012",
+                "name": "Es Teh Tawar",
+                "harga_jual": 5000,
+                "stock": 35,
+                "categories": ["Minuman"],
+                "image": {
+                    "url" : "../../asset/img/products/es-teh.jpg",
+                    "alt" : "Es Teh"
+                }
+            },
+            {
+                "id": "01kgs68ty7cq49c9rfmxawv2ks",
+                "sku": "SNJ-SBY-013",
+                "name": "Es Jeruk Manis",
+                "harga_jual": 7000,
+                "stock": 6,
+                "categories": ["Minuman"],
+                "image": {
+                    "url" : "../../asset/img/products/es-jeruk.jpg",
+                    "alt" : "Es jeruk"
+                }
+            },
+            {
+                "id": "01kgs68ty7x5shgwr416ahda1r",
+                "sku": "SNJ-SBY-014",
+                "name": "Es Jeruk Tanpa Gula",
+                "harga_jual": 6000,
+                "stock": 6,
+                "categories": ["Minuman"],
+                "image": {
+                    "url" : "../../asset/img/products/es-jeruk.jpg",
+                    "alt" : "Es jeruk"
+                }
+            },
+            {
+                "id": "01kgs68ty7qce8e5m77npybqkt",
+                "sku": "SNJ-SBY-015",
+                "name": "Jus Mangga",
+                "harga_jual": 10000,
+                "stock": 8,
+                "categories": ["Minuman"],
+                "image": {
+                    "url" : "../../asset/img/products/jus-mangga.jpg",
+                    "alt" : "Jus Mangga"
                 }
             }
         ]
