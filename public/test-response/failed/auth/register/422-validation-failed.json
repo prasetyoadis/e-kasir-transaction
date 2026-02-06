@@ -1,9 +1,0 @@
-{
-    "statusCode": 422,
-    "statusMessage": "Unprocessable Entity",
-    "statusDescription": "Validation failed",
-    "result": {
-        "errorCode": "20",
-        "errorMessage": "Validation failed"
-    }
-}
