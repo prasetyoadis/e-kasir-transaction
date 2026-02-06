@@ -193,6 +193,73 @@
             }
         });
     </script>
+
+    <div id="receipt-area" style="display: none;">
+    <div class="receipt">
+        <div class="receipt-header">
+            <h2 class="shop-name">KASSIA RETAIL</h2>
+            <p class="address">Jl. Grosir Jaya No. 88<br>Jakarta Pusat</p>
+            <p class="phone">Telp: 021-555-9999</p>
+        </div>
+        
+        <div class="dashed-line">================================</div>
+        
+        <div class="receipt-meta">
+            <div class="meta-row">
+                <span id="rec-date"></span>
+                <span id="rec-time"></span>
+            </div>
+            <div class="meta-row">
+                <span>No: <span id="rec-inv"></span></span>
+                <span>Kasir: Admin</span>
+            </div>
+        </div>
+
+        <div class="dashed-line">--------------------------------</div>
+
+        <div id="rec-items" class="receipt-items">
+            </div>
+
+        <div class="dashed-line">--------------------------------</div>
+
+        <div class="receipt-summary">
+            <div class="summary-row">
+                <span>Total Item</span>
+                <span id="rec-total-qty">0</span>
+            </div>
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="rec-subtotal">0</span>
+            </div>
+            <div class="summary-row">
+                <span>Diskon</span>
+                <span id="rec-discount">0</span>
+            </div>
+            <div class="summary-row total-row">
+                <span>TOTAL AKHIR</span>
+                <span id="rec-grand-total">0</span>
+            </div>
+            <br>
+            <div class="summary-row">
+                <span>Tunai</span>
+                <span id="rec-cash">0</span>
+            </div>
+            <div class="summary-row">
+                <span>Kembali</span>
+                <span id="rec-change">0</span>
+            </div>
+        </div>
+
+        <div class="dashed-line">================================</div>
+
+        <div class="receipt-footer">
+            <p>Barang yang sudah dibeli</p>
+            <p>tidak dapat ditukar/dikembalikan</p>
+            <p>~ Terima Kasih ~</p>
+        </div>
+    </div>
+</div>
+
 </body>
 
 </html>
