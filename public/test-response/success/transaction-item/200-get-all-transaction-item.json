@@ -1,0 +1,104 @@
+{
+    "statusCode": 200,
+    "statusMessage": "OK",
+    "statusDescription": "Request processed successfully",
+    "result": {
+        "errorCode": "31",
+        "errorMessage": "Data retrieved successfully",
+        "data": [
+            {
+                "id": "01kgpgtz4n49r96r0thpgrej93",
+                "name": "Sego Njamoer Original Reguler",
+                "harga_jual": 18000,
+                "stock": 8,
+                "categories": [
+                    "Makanan"
+                ],
+                "image": {
+                    "url" : "../../asset/img/products/snj-sby-001.webp",
+                    "alt" : "Sego Njamoer Original"
+                }
+            },
+            {
+                "id": "01kgrj376ebca57ys322we8dpr",
+                "name": "Sego Njamoer Original Jumbo",
+                "harga_jual": 20000,
+                "stock": 8,
+                "categories": [
+                    "Makanan"
+                ],
+                "image": {
+                    "url" : "../../asset/img/products/snj-sby-001.webp",
+                    "alt" : "Sego Njamoer Original"
+                }
+            },
+            {
+                "id": "01kgrxqg0f62h6ftbgayddm69x",
+                "name": "Sego Njamoer Sambal Ijo Reguler",
+                "harga_jual": 18000,
+                "stock": 6,
+                "categories": [
+                    "Makanan",
+                    "Pedas"
+                ],
+                "image": {
+                    "url" : "../../asset/img/products/snj-sby-002.webp",
+                    "alt" : "Sego Njamoer Sambal Ijo"
+                }
+            },
+            {
+                "id": "01kgrxqqpkvrtszahe5429x2cg",
+                "name": "Sego Njamoer Sambal Ijo Pedas",
+                "harga_jual": 20000,
+                "stock": 5,
+                "categories": [
+                    "Makanan",
+                    "Pedas"
+                ],
+                "image": {
+                    "url" : "../../asset/img/products/snj-sby-002.webp",
+                    "alt" : "Sego Njamoer Sambal Ijo"
+                }
+            },
+            {
+                "id": "01kgrxrp73s8xeby1xkbz844nn",
+                "name": "Sego Njamoer Teriyaki Reguler",
+                "harga_jual": 20000,
+                "stock": 4,
+                "categories": [
+                    "Makanan"
+                ],
+                "image": {
+                    "url" : "../../asset/img/products/snj-sby-003.webp",
+                    "alt" : "Sego Njamoer Teriyaki"
+                }
+            },
+            {
+                "id": "01kgrxtqh9t88h6a1kx1hq572z",
+                "name": "Jamur Crispy Original Small",
+                "harga_jual": 12000,
+                "stock": 4,
+                "categories": [
+                    "Snack"
+                ],
+                "image": {
+                    "url" : "../../asset/img/products/snj-sby-004.webp",
+                    "alt" : "Jamur Crispy Original"
+                }
+            },
+            {
+                "id": "01kgrxvbvzkhnpz6br97ybx5qb",
+                "name": "Jamur Crispy Original Large",
+                "harga_jual": 16000,
+                "stock": 8,
+                "categories": [
+                    "Snack"
+                ],
+                "image": {
+                    "url" : "../../asset/img/products/snj-sby-004.webp",
+                    "alt" : "Jamur Crispy Original"
+                }
+            }
+        ]
+    }
+}
