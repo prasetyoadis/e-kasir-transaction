@@ -1,13 +1,5 @@
-// --- DUMMY DATA ---
-const dummyProducts = [
-    { barcode: "A001", name: "YukCoding Drink", price: 15000 },
-    { barcode: "A002", name: "Susu Formula", price: 50000 },
-    { barcode: "A003", name: "Permen Enak", price: 500 },
-    { barcode: "A004", name: "Roti Tawar", price: 12000 },
-    { barcode: "A005", name: "Kopi Bubuk", price: 25000 },
-];
-
 // --- STATE MANAGEMENT ---
+let productsData = []; // Pengganti dummyProducts, akan diisi via Fetch
 let cart = []; // Array to hold cart items
 
 // --- DOM ELEMENTS ---
@@ -35,6 +27,35 @@ const formatRupiah = (number) => {
 
 // --- CORE FUNCTIONS ---
 
+// 0. LOAD DATA (NEW FEATURE)
+async function loadProducts() {
+    try {
+        // Path sesuai request (asumsi folder public adalah root server)
+        const response = await fetch('/test-response/success/transaction-item/200-get-all-transaction-item.json');
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const json = await response.json();
+
+        // Mapping data JSON ke format yang dikenali sistem (sku -> barcode, harga_jual -> price)
+        if (json.result && json.result.data) {
+            productsData = json.result.data.map(item => ({
+                barcode: item.sku,       // Mapping SKU ke barcode
+                name: item.name,
+                price: item.harga_jual,  // Mapping harga_jual ke price
+                stock: item.stock,       // Menyimpan data stok
+                id: item.id
+            }));
+            console.log("Data loaded:", productsData.length, "items");
+        }
+    } catch (error) {
+        console.error("Gagal memuat data produk:", error);
+        alert("Error: Gagal mengambil data produk dari server.");
+    }
+}
+
 // 1. Add Product Logic
 function addProductFromInput() {
     const barcode = elements.barcodeInput.value.trim();
@@ -45,12 +66,18 @@ function addProductFromInput() {
         return;
     }
 
-    // Find product in dummy data
-    const product = dummyProducts.find(
+    // Cari produk di array productsData yang sudah di-fetch
+    const product = productsData.find(
         (p) => p.barcode.toLowerCase() === barcode.toLowerCase(),
     );
 
     if (product) {
+        // Validasi Stok (Opsional, berdasarkan data JSON)
+        if (product.stock < qty) {
+            alert(`Stok tidak cukup! Tersedia: ${product.stock}`);
+            return;
+        }
+
         // Check if item exists in cart
         const existingItemIndex = cart.findIndex(
             (item) => item.barcode === product.barcode,
@@ -66,7 +93,7 @@ function addProductFromInput() {
                 name: product.name,
                 price: product.price,
                 qty: qty,
-                discount: 0, // Default discount per item
+                discount: 0,
             });
         }
 
@@ -77,7 +104,7 @@ function addProductFromInput() {
 
         renderTable();
     } else {
-        alert("Product not found! (Try: A001, A002, A003)");
+        alert("Product not found! (Try: SNJ-SBY-001)");
     }
 }
 
@@ -123,6 +150,13 @@ function renderTable() {
 window.updateItemQty = function (index) {
     const newQty = prompt("Enter new quantity:", cart[index].qty);
     if (newQty !== null && newQty > 0) {
+        // Validasi stok ulang saat edit qty (Opsional)
+        const product = productsData.find(p => p.barcode === cart[index].barcode);
+        if(product && product.stock < newQty) {
+             alert(`Stok tidak cukup! Tersedia: ${product.stock}`);
+             return;
+        }
+
         cart[index].qty = parseInt(newQty);
         renderTable();
     }
@@ -146,10 +180,9 @@ function updateTotals() {
         totalDiscount += item.discount;
     });
 
-    // Cek diskon member (Simulasi logika global discount)
+    // Cek diskon member
     const isMember = elements.customerSelect.value === "Member";
     if (isMember) {
-        // Diskon member 5% dari subtotal
         const memberDisc = subTotal * 0.05;
         totalDiscount += memberDisc;
     }
@@ -166,22 +199,19 @@ function updateTotals() {
         .replace("Rp", "")
         .trim();
 
-    // Trigger hitung kembalian jika ada cash
+    // Trigger hitung kembalian
     calculateChange(grandTotal);
 }
 
 // 5. Payment Logic
 function calculateChange(currentGrandTotal = null) {
-    // Helper untuk unformat rupiah string kembali ke number
     const parseRupiah = (str) => {
         const num = parseFloat(str.replace(/[^\d]/g, ""));
         return isNaN(num) ? 0 : num;
     };
 
-    // Ambil Grand Total (dari variable atau DOM)
     let grandTotal = currentGrandTotal;
     if (grandTotal === null) {
-        // Ambil dari text, buang 'Rp' dan titik
         grandTotal = parseRupiah(elements.grandTotalVal.innerText);
     }
 
@@ -192,16 +222,15 @@ function calculateChange(currentGrandTotal = null) {
         elements.changeInput.value = formatRupiah(change);
         elements.changeInput.style.color = "green";
     } else {
-        elements.changeInput.value = "0"; // Atau minus
+        elements.changeInput.value = "0";
         elements.changeInput.style.color = "red";
     }
 }
 
-// --- 6. PRINT RECEIPT FUNCTION (FITUR BARU) ---
+// 6. PRINT RECEIPT
 function printReceipt(cash, change, subTotal, discount, grandTotal) {
     const date = new Date();
 
-    // 1. Isi Header Info ke Template Struk (Pastikan ID ada di HTML)
     const elDate = document.getElementById("rec-date");
     if (elDate) elDate.innerText = date.toLocaleDateString("id-ID");
 
@@ -211,7 +240,6 @@ function printReceipt(cash, change, subTotal, discount, grandTotal) {
     const elInv = document.getElementById("rec-inv");
     if (elInv) elInv.innerText = `MP${Date.now().toString().slice(-6)}`;
 
-    // 2. Isi List Belanjaan
     const container = document.getElementById("rec-items");
     if (container) {
         container.innerHTML = "";
@@ -231,12 +259,10 @@ function printReceipt(cash, change, subTotal, discount, grandTotal) {
             container.innerHTML += html;
         });
 
-        // Update Total Qty di Struk
         const elQty = document.getElementById("rec-total-qty");
         if (elQty) elQty.innerText = totalQty;
     }
 
-    // 3. Isi Summary Pembayaran
     const setVal = (id, val) => {
         const el = document.getElementById(id);
         if (el) el.innerText = val.toLocaleString("id-ID");
@@ -248,18 +274,13 @@ function printReceipt(cash, change, subTotal, discount, grandTotal) {
     setVal("rec-cash", cash);
     setVal("rec-change", change);
 
-    // 4. Trigger Print Browser
     const area = document.getElementById("receipt-area");
     if (area) {
-        area.style.display = "block"; // Tampilkan sementara
+        area.style.display = "block";
         setTimeout(() => {
             window.print();
-            area.style.display = "none"; // Sembunyikan setelah print dialog muncul
+            area.style.display = "none";
         }, 500);
-    } else {
-        console.error(
-            "Template struk tidak ditemukan di HTML! Pastikan kode HTML struk sudah dipasang.",
-        );
     }
 }
 
@@ -279,10 +300,7 @@ window.processPayment = function () {
         return;
     }
 
-    // Ambil Data Angka
     const cash = parseFloat(elements.cashInput.value) || 0;
-
-    // Helper parse
     const parseRupiah = (str) => parseFloat(str.replace(/[^\d]/g, "")) || 0;
     const grandTotal = parseRupiah(elements.grandTotalVal.innerText);
     const subTotal = parseRupiah(elements.subTotalVal.innerText);
@@ -295,10 +313,8 @@ window.processPayment = function () {
 
     const change = cash - grandTotal;
 
-    // 1. Panggil Fungsi Cetak Struk
     printReceipt(cash, change, subTotal, discount, grandTotal);
 
-    // 2. Reset setelah sukses (Delay agar print jalan dulu)
     setTimeout(() => {
         cart = [];
         elements.cashInput.value = "";
@@ -317,6 +333,8 @@ if (elements.customerSelect) {
 
 // Initialize
 document.addEventListener("DOMContentLoaded", () => {
+    // Panggil fungsi fetch data saat halaman dimuat
+    loadProducts();
     renderTable();
 });
 
@@ -329,7 +347,6 @@ function toggleSidebar() {
     overlay.classList.toggle("active");
 }
 
-// Menutup sidebar jika layar di-resize kembali ke desktop
 window.addEventListener("resize", () => {
     if (window.innerWidth > 768) {
         const sb = document.getElementById("sidebar");
