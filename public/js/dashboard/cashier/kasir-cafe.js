@@ -5,7 +5,7 @@ let menuItems = [];
 let cart = [];
 let currentFilter = "all";
 
-const API_URL = "/test-response/success/transaction-item/200-get-all-transaction-item.json";
+const API_URL = "/api/transaction-items";
 
 /* ========================
    1. INITIALIZATION
@@ -21,16 +21,32 @@ document.addEventListener("DOMContentLoaded", () => {
    ======================== */
 async function fetchMenuData() {
     try {
-        const response = await fetch(API_URL);
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        const response = await fetch(API_URL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        });
 
         const json = await response.json();
+
+        if (
+            json.statusCode !== 200 ||
+            !json.result ||
+            json.result.errorCode !== 31
+        ) {
+            throw new Error(
+                json?.result?.errorMessage || "Gagal ambil data menu",
+            );
+        }
+
         const rawData = json.result.data;
 
-        menuItems = rawData.map(item => {
+        menuItems = rawData.map((item) => {
             let itemCategories = [...item.categories];
             if (itemCategories.includes("Minuman")) {
-                const otherTags = itemCategories.filter(c => c !== "Minuman");
+                const otherTags = itemCategories.filter((c) => c !== "Minuman");
                 if (otherTags.length === 0) {
                     itemCategories.push("Aneka Minuman");
                 }
@@ -44,21 +60,21 @@ async function fetchMenuData() {
                 stock: item.stock,
                 categories: itemCategories,
                 img: item.image.url,
-                alt: item.image.alt
+                alt: item.image.alt,
             };
         });
 
         initDynamicCategories();
         renderMenu(menuItems);
-
     } catch (error) {
         console.error("Gagal memuat data menu:", error);
+
         const grid = document.getElementById("menu-grid");
-        if(grid) {
+        if (grid) {
             grid.innerHTML = `
                 <div style="grid-column: 1/-1; text-align: center; color: red; margin-top: 50px;">
                     <p>Gagal memuat data menu.</p>
-                    <small>Pastikan file JSON ada di: ${API_URL}</small>
+                    <small>Pastikan API dapat diakses: ${API_URL}</small>
                     <br><small>Error: ${error.message}</small>
                 </div>
             `;
@@ -71,9 +87,15 @@ async function fetchMenuData() {
    ======================== */
 
 function updateDate() {
-    const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+    const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    };
     const dateEl = document.getElementById("current-date");
-    if (dateEl) dateEl.innerText = new Date().toLocaleDateString("id-ID", options);
+    if (dateEl)
+        dateEl.innerText = new Date().toLocaleDateString("id-ID", options);
 }
 
 function initDynamicCategories() {
@@ -85,11 +107,13 @@ function initDynamicCategories() {
     const foodTags = new Set();
     const drinkTags = new Set();
 
-    menuItems.forEach(item => {
-        const isFood = item.categories.includes("Makanan") || item.categories.includes("Snack");
+    menuItems.forEach((item) => {
+        const isFood =
+            item.categories.includes("Makanan") ||
+            item.categories.includes("Snack");
         const isDrink = item.categories.includes("Minuman");
 
-        item.categories.forEach(cat => {
+        item.categories.forEach((cat) => {
             const blacklist = ["Makanan", "Minuman", "Tambahan"];
             if (!blacklist.includes(cat)) {
                 if (isFood) foodTags.add(cat);
@@ -115,8 +139,8 @@ function initDynamicCategories() {
     allLi.onclick = () => filterMenu("all", allLi);
     foodList.appendChild(allLi);
 
-    foodTags.forEach(tag => foodList.appendChild(createLi(tag)));
-    drinkTags.forEach(tag => drinkList.appendChild(createLi(tag)));
+    foodTags.forEach((tag) => foodList.appendChild(createLi(tag)));
+    drinkTags.forEach((tag) => drinkList.appendChild(createLi(tag)));
 }
 
 function renderMenu(items) {
@@ -133,19 +157,19 @@ function renderMenu(items) {
         const card = document.createElement("div");
         card.className = "menu-card";
 
-        if(item.stock > 0) {
+        if (item.stock > 0) {
             card.onclick = () => addToCart(item);
         } else {
             card.style.opacity = "0.6";
             card.style.cursor = "not-allowed";
         }
 
-        const imgPath = item.img || '/asset/img/products/no_image.jpg';
+        const imgPath = item.img || "/asset/img/products/no_image.jpg";
 
         card.innerHTML = `
             <div style="position:relative;">
                 <img src="${imgPath}" alt="${item.name}" onerror="this.src='/asset/img/products/no_image.jpg'">
-                ${item.stock === 0 ? '<span style="position:absolute; top:0; right:0; background:red; color:white; padding:2px 6px; font-size:10px; border-radius:4px;">Habis</span>' : ''}
+                ${item.stock === 0 ? '<span style="position:absolute; top:0; right:0; background:red; color:white; padding:2px 6px; font-size:10px; border-radius:4px;">Habis</span>' : ""}
             </div>
             <h4>${item.name}</h4>
             <div class="price">Rp ${item.price.toLocaleString("id-ID")}</div>
@@ -156,13 +180,17 @@ function renderMenu(items) {
 
 function filterMenu(categoryTag, element) {
     currentFilter = categoryTag;
-    document.querySelectorAll(".sidebar-category li").forEach((el) => el.classList.remove("active"));
+    document
+        .querySelectorAll(".sidebar-category li")
+        .forEach((el) => el.classList.remove("active"));
     if (element) element.classList.add("active");
 
     if (categoryTag === "all") {
         renderMenu(menuItems);
     } else {
-        const filtered = menuItems.filter((item) => item.categories.includes(categoryTag));
+        const filtered = menuItems.filter((item) =>
+            item.categories.includes(categoryTag),
+        );
         renderMenu(filtered);
     }
 }
@@ -172,7 +200,9 @@ function setupEventListeners() {
     if (searchInput) {
         searchInput.addEventListener("keyup", (e) => {
             const keyword = e.target.value.toLowerCase();
-            const filtered = menuItems.filter((item) => item.name.toLowerCase().includes(keyword));
+            const filtered = menuItems.filter((item) =>
+                item.name.toLowerCase().includes(keyword),
+            );
             renderMenu(filtered);
         });
     }
@@ -205,7 +235,7 @@ function addToCart(product) {
 
 function updateQty(id, change) {
     const item = cart.find((i) => i.id === id);
-    const originalProduct = menuItems.find(p => p.id === id);
+    const originalProduct = menuItems.find((p) => p.id === id);
 
     if (item) {
         const newQty = item.qty + change;
@@ -237,7 +267,7 @@ function resetOrder() {
         cart = [];
         renderCart();
         const customerInput = document.getElementById("customerName");
-        if(customerInput) customerInput.value = "";
+        if (customerInput) customerInput.value = "";
     }
 }
 
@@ -255,7 +285,7 @@ function renderCart() {
         cart.forEach((item) => {
             totalQty += item.qty;
             totalPrice += item.price * item.qty;
-            const imgPath = item.img || '/asset/img/products/no_image.jpg';
+            const imgPath = item.img || "/asset/img/products/no_image.jpg";
 
             const li = document.createElement("li");
             li.className = "order-item";
@@ -283,7 +313,8 @@ function renderCart() {
     const totalItemsEl = document.getElementById("total-items");
     const totalPriceEl = document.getElementById("total-price");
     if (totalItemsEl) totalItemsEl.innerText = totalQty;
-    if (totalPriceEl) totalPriceEl.innerText = "Rp " + totalPrice.toLocaleString("id-ID");
+    if (totalPriceEl)
+        totalPriceEl.innerText = "Rp " + totalPrice.toLocaleString("id-ID");
 }
 
 /* ========================
@@ -297,7 +328,8 @@ function openPaymentModal() {
     const modal = document.getElementById("paymentModal");
     const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
-    document.getElementById("modal-total").innerText = "Rp " + total.toLocaleString("id-ID");
+    document.getElementById("modal-total").innerText =
+        "Rp " + total.toLocaleString("id-ID");
     document.getElementById("cash-received").value = "";
     document.getElementById("change-amount").innerText = "Rp 0";
     if (modal) modal.style.display = "flex";
@@ -310,7 +342,8 @@ function closePaymentModal() {
 
 function calculateChange() {
     const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-    const received = parseFloat(document.getElementById("cash-received").value) || 0;
+    const received =
+        parseFloat(document.getElementById("cash-received").value) || 0;
     const change = received - total;
     const el = document.getElementById("change-amount");
 
@@ -325,7 +358,8 @@ function calculateChange() {
 
 function processOrder() {
     const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-    const received = parseFloat(document.getElementById("cash-received").value) || 0;
+    const received =
+        parseFloat(document.getElementById("cash-received").value) || 0;
 
     if (received < total) {
         alert("Uang tunai kurang!");
