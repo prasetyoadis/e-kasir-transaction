@@ -28,7 +28,7 @@
         <aside class="order-panel">
             <div class="order-header">
                 <h2>Order Menu</h2>
-                <span class="order-no">Order No. #New</span>
+                <span id="order_num" class="order-no">Order No. #New</span>
                 <button class="btn-icon-sm" style="border:none; background:none; cursor:pointer; color:#888;">
                     <i class="fas fa-edit"></i>
                 </button>
@@ -154,7 +154,7 @@
 
 <!--JS-->
 @section('js')
-    <script src="{{ asset('js/dashboard/cashier/kasir-cafe.js') }}"></script>
+    <script src="{{ asset('js/dashboard/cashier/fetch-kasir-cafe2.js') }}"></script>
 @endsection
 
 </html>

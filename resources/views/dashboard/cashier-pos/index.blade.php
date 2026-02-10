@@ -41,7 +41,7 @@
                             <label>Qty</label>
                             <input type="number" id="qty_input" value="1" min="1">
                         </div>
-                        <button onclick="addProductFromInput()" class="btn-add">
+                        <button onclick="handleScanBarcode()" class="btn-add">
                             <i class="fas fa-cart-plus"></i> Add
                         </button>
                     </div>
@@ -50,7 +50,7 @@
                 <div class="card invoice-card">
                     <div class="invoice-info">
                         <span class="label">Invoice</span>
-                        <span class="value">MP{{ date('ymd') }}001</span>
+                        <span id="order-num" class="value">MP{{ date('ymd') }}001</span>
                     </div>
                     <div class="grand-total-display">
                         <span class="label">Grand Total</span>
@@ -129,70 +129,52 @@
         <div class="receipt">
             <div class="receipt-header">
                 <h2 class="shop-name">KASSIA RETAIL</h2>
-                <p class="address">Jl. Grosir Jaya No. 88<br>Jakarta Pusat</p>
-                <p class="phone">Telp: 021-555-9999</p>
+                <p style="font-size:10px; margin-bottom:5px;">Jl. Kopi Nikmat No. 1<br>Jakarta Selatan</p>
             </div>
-
-            <div class="dashed-line">================================</div>
-
+            <div class="dashed-line">--------------------------------</div>
             <div class="receipt-meta">
                 <div class="meta-row">
-                    <span id="rec-date"></span>
-                    <span id="rec-time"></span>
+                    <span id="receipt-date"></span>
+                    <span id="receipt-inv"></span>
                 </div>
                 <div class="meta-row">
-                    <span>No: <span id="rec-inv"></span></span>
                     <span>Kasir: Admin</span>
+                    <span>Umum</span>
                 </div>
             </div>
-
             <div class="dashed-line">--------------------------------</div>
-
-            <div id="rec-items" class="receipt-items">
-            </div>
-
+            <div id="receipt-items"></div>
             <div class="dashed-line">--------------------------------</div>
-
             <div class="receipt-summary">
                 <div class="summary-row">
-                    <span>Total Item</span>
-                    <span id="rec-total-qty">0</span>
-                </div>
-                <div class="summary-row">
                     <span>Subtotal</span>
-                    <span id="rec-subtotal">0</span>
-                </div>
-                <div class="summary-row">
-                    <span>Diskon</span>
-                    <span id="rec-discount">0</span>
+                    <span id="receipt-subtotal">0</span>
                 </div>
                 <div class="summary-row total-row">
-                    <span>TOTAL AKHIR</span>
-                    <span id="rec-grand-total">0</span>
+                    <span>TOTAL</span>
+                    <span id="receipt-grand-total">0</span>
                 </div>
                 <br>
                 <div class="summary-row">
                     <span>Tunai</span>
-                    <span id="rec-cash">0</span>
+                    <span id="receipt-cash">0</span>
                 </div>
                 <div class="summary-row">
                     <span>Kembali</span>
-                    <span id="rec-change">0</span>
+                    <span id="receipt-change">0</span>
                 </div>
             </div>
-
-            <div class="dashed-line">================================</div>
-
+            <div class="dashed-line">--------------------------------</div>
             <div class="receipt-footer">
-                <p>Barang yang sudah dibeli</p>
-                <p>tidak dapat ditukar/dikembalikan</p>
-                <p>~ Terima Kasih ~</p>
+                <p>Terima Kasih!</p>
+                <p>Powered by Kassia</p>
             </div>
         </div>
     </div>
 @endsection
 @section('js')
-    <script src="{{ asset('js/dashboard/cashier/pos-logic.js') }}"></script>
+    {{-- <script src="{{ asset('js/dashboard/cashier/pos-logic.js') }}"></script> --}}
+    <script src="{{ asset('js/dashboard/cashier/fetch-kasir-pos.js') }}"></script>
 
     <script>
         // Toggle Sidebar khusus Mobile
