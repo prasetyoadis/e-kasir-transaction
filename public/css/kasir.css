@@ -728,7 +728,7 @@ textarea:focus {
 
 /* Desain Struk Minimarket */
 .receipt {
-    width: 58mm; /* Standar struk kecil */
+    width: 80mm; /* Standar struk kecil */
     font-family: "Courier New", Courier, monospace;
     font-size: 11px;
     background: #fff;
