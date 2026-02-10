@@ -1,0 +1,456 @@
+/* ==========================================================================
+   HEADER.CSS - Layout, Notifikasi, Profil, & Responsive
+   ========================================================================== */
+:root {
+    /* --- PALET WARNA --- */
+    --color-warm-white: #fffef9;
+    --color-gold: #f4c430;
+    --color-leaf-green: #6b8e43;
+    --color-earth-brown: #8b7e66;
+    --color-deep-dark: #2f2f2a;
+    --color-clay-red: #c2433d;
+    --pure-white: #ffffff;
+    --border-line: #e6e4dc;
+
+    --bg-body: var(--color-warm-white);
+    --bg-card: var(--pure-white);
+    --text-main: var(--color-deep-dark);
+    --text-muted: var(--color-earth-brown);
+}
+/* 1. CONTAINER UTAMA HEADER */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px; /* Tinggi header agar logo besar muat */
+    background-color: #ffffff;
+    padding: 0 24px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    font-family: "Inter", sans-serif;
+}
+
+/* Bagian Kiri (Hamburger) */
+.header-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.btn-icon-header {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    color: #4b5563;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-icon-header:hover {
+    background-color: #f3f4f6;
+}
+
+/* 2. BAGIAN TENGAH (LOGO) */
+.header-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    z-index: 10;
+}
+
+.header-logo-img {
+    height: 54px; /* LOGO UKURAN BESAR */
+    width: auto;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+/* 3. BAGIAN KANAN */
+.header-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+}
+
+/* --- NOTIFIKASI STYLES --- */
+.notification-wrapper {
+    position: relative;
+}
+
+.notification-btn {
+    position: relative;
+    color: #6b7280;
+}
+
+/* Animasi Lonceng (Shake) */
+@keyframes bellShake {
+    0% {
+        transform: rotate(0);
+    }
+    15% {
+        transform: rotate(15deg);
+    }
+    30% {
+        transform: rotate(-15deg);
+    }
+    45% {
+        transform: rotate(10deg);
+    }
+    60% {
+        transform: rotate(-10deg);
+    }
+    75% {
+        transform: rotate(5deg);
+    }
+    100% {
+        transform: rotate(0);
+    }
+}
+
+.notification-btn:hover i {
+    animation: bellShake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    color: #111;
+}
+
+/* Badge Merah (Dot) */
+.notif-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    background-color: #ef4444;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    display: none; /* Default Hidden, muncul via JS */
+}
+
+/* Dropdown Notifikasi */
+.notif-dropdown {
+    position: absolute;
+    top: 55px;
+    right: -80px;
+    width: 340px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    border: 1px solid #e5e7eb;
+    display: none;
+    flex-direction: column;
+    z-index: 1100;
+    overflow: hidden;
+    animation: slideDownFade 0.2s ease forwards;
+}
+.notif-dropdown.active {
+    display: flex;
+}
+
+@keyframes slideDownFade {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.notif-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid #f3f4f6;
+    background-color: #fff;
+}
+.notif-header h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+}
+.mark-read {
+    font-size: 12px;
+    color: #eab308;
+    text-decoration: none;
+    font-weight: 600;
+}
+.mark-read:hover {
+    text-decoration: underline;
+}
+
+.notif-list {
+    max-height: 320px;
+    overflow-y: auto;
+}
+.notif-item {
+    display: flex;
+    gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid #f9fafb;
+    cursor: pointer;
+    transition: background 0.2s;
+    position: relative;
+}
+.notif-item:hover {
+    background-color: #f9fafb;
+}
+.notif-item.unread {
+    background-color: #fffbeb;
+}
+
+.notif-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+}
+.bg-warning-light {
+    background-color: #fef9c3;
+}
+.text-warning {
+    color: #d97706;
+}
+.bg-success-light {
+    background-color: #dcfce7;
+}
+.text-success {
+    color: #166534;
+}
+.bg-info-light {
+    background-color: #e0f2fe;
+}
+.text-info {
+    color: #0284c7;
+}
+
+.notif-content {
+    flex: 1;
+}
+.notif-text {
+    font-size: 13px;
+    color: #374151;
+    margin: 0 0 4px 0;
+    line-height: 1.4;
+}
+.notif-time {
+    font-size: 11px;
+    color: #9ca3af;
+}
+.dot-unread {
+    width: 8px;
+    height: 8px;
+    background-color: #ef4444;
+    border-radius: 50%;
+    margin-top: 6px;
+}
+
+.notif-footer {
+    padding: 12px;
+    text-align: center;
+    border-top: 1px solid #f3f4f6;
+    background-color: #f9fafb;
+}
+.notif-footer a {
+    font-size: 13px;
+    color: #4b5563;
+    font-weight: 600;
+    text-decoration: none;
+}
+.notif-footer a:hover {
+    color: #eab308;
+}
+
+/* --- PROFILE STYLES --- */
+.profile-wrapper {
+    position: relative;
+}
+
+.header-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: background 0.2s;
+    user-select: none;
+}
+.header-profile:hover {
+    background-color: #f3f4f6;
+}
+
+.avatar-circle {
+    width: 38px;
+    height: 38px;
+    background-color: #e5e7eb;
+    color: #4b5563;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+    text-align: left;
+}
+.profile-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1f2937;
+}
+.profile-role {
+    font-size: 11px;
+    color: #9ca3af;
+    font-weight: 500;
+}
+.profile-kebab-icon {
+    color: #9ca3af;
+    font-size: 16px;
+    margin-left: 4px;
+}
+
+/* Profile Dropdown */
+.profile-dropdown {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 240px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    display: none;
+    flex-direction: column;
+    z-index: 1100;
+    overflow: hidden;
+    animation: slideDownFade 0.2s ease forwards;
+}
+.profile-dropdown.active {
+    display: flex;
+}
+
+.profile-menu-header {
+    padding: 16px;
+    background-color: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+}
+.pm-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 2px 0;
+}
+.pm-email {
+    font-size: 12px;
+    color: #6b7280;
+    margin: 0;
+}
+
+.profile-menu-list {
+    list-style: none;
+    padding: 8px 0;
+    margin: 0;
+}
+.profile-menu-list li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    font-size: 14px;
+    color: #374151;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+.profile-menu-list li a:hover {
+    background-color: #f3f4f6;
+    color: #111;
+}
+.profile-menu-list li a i {
+    font-size: 14px;
+    width: 20px;
+    text-align: center;
+    color: #9ca3af;
+}
+.profile-menu-list .divider {
+    height: 1px;
+    background-color: #e5e7eb;
+    margin: 8px 0;
+}
+.profile-menu-list li a.text-danger {
+    color: #ef4444;
+}
+.profile-menu-list li a.text-danger:hover {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+.profile-menu-list li a.text-danger i {
+    color: #ef4444;
+}
+
+/* --- RESPONSIVE --- */
+/* Tablet */
+@media (max-width: 1023px) {
+    .main-header {
+        padding: 0 16px;
+        height: 64px;
+    }
+    .profile-role {
+        display: none;
+    }
+    .header-logo-img {
+        height: 44px;
+    }
+}
+
+/* Mobile (HP) */
+@media (max-width: 767px) {
+    .main-header {
+        padding: 0 12px;
+        height: 60px;
+    }
+    .header-logo-img {
+        height: 40px;
+    }
+
+    .profile-info {
+        display: none;
+    } /* Sembunyikan Nama & Role */
+    .header-profile {
+        gap: 4px;
+        padding: 4px;
+    }
+    .avatar-circle {
+        width: 34px;
+        height: 34px;
+        font-size: 14px;
+    }
+
+    .notif-dropdown {
+        width: 300px;
+        right: -60px;
+        top: 50px;
+    }
+}

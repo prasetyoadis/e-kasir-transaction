@@ -1,0 +1,174 @@
+/* public/css/popup-sidebar.css */
+:root {
+    /* --- PALET WARNA --- */
+    --color-warm-white: #fffef9;
+    --color-gold: #f4c430;
+    --color-leaf-green: #6b8e43;
+    --color-earth-brown: #8b7e66;
+    --color-deep-dark: #2f2f2a;
+    --color-clay-red: #c2433d;
+    --pure-white: #ffffff;
+    --border-line: #e6e4dc;
+
+    --bg-body: var(--color-warm-white);
+    --bg-card: var(--pure-white);
+    --text-main: var(--color-deep-dark);
+    --text-muted: var(--color-earth-brown);
+}
+/* 1. OVERLAY GELAP (Background blur saat sidebar muncul) */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(47, 47, 42, 0.6); /* Warna Deep Dark transparan */
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(3px);
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 2. CONTAINER SIDEBAR */
+.popup-sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px; /* Sembunyi di kiri layar */
+    width: 280px;
+    height: 100vh;
+
+    /* Mengambil warna dari :root file css utama (iventory/kasir) */
+    background: var(--color-deep-dark);
+    color: var(--color-warm-white);
+
+    z-index: 2001;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--color-earth-brown);
+}
+
+.popup-sidebar.active {
+    left: 0; /* Muncul ke layar */
+}
+
+/* 3. HEADER SIDEBAR (Logo & Tombol Close) */
+.sidebar-header {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    border-bottom: 1px solid rgba(139, 126, 102, 0.3);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.brand-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--color-gold);
+}
+
+.brand-wrapper img {
+    height: 35px;
+}
+
+.btn-close-sidebar {
+    background: transparent;
+    border: none;
+    color: var(--color-warm-white);
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    opacity: 0.7;
+}
+
+.btn-close-sidebar:hover {
+    color: var(--color-clay-red);
+    opacity: 1;
+}
+
+/* 4. LIST MENU */
+.sidebar-menu {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 0;
+    list-style: none;
+}
+
+.menu-category {
+    padding: 15px 25px 5px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--color-earth-brown);
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 25px;
+    color: rgba(255, 254, 249, 0.8);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    border-left: 4px solid transparent;
+}
+
+.nav-link i {
+    width: 30px;
+    text-align: center;
+    margin-right: 5px;
+    color: var(--color-earth-brown);
+    transition: color 0.2s;
+}
+
+/* Hover State */
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-warm-white);
+    padding-left: 30px; /* Efek geser */
+}
+
+.nav-link:hover i {
+    color: var(--color-gold);
+}
+
+/* Active State (Halaman yang sedang dibuka) */
+.nav-link.active {
+    background: linear-gradient(90deg, rgba(244, 196, 48, 0.15), transparent);
+    color: var(--color-gold);
+    border-left-color: var(--color-gold);
+    font-weight: 600;
+}
+
+.nav-link.active i {
+    color: var(--color-gold);
+}
+
+/* 5. USER INFO (Bukan Footer, cuma info login) */
+.sidebar-user-info {
+    padding: 20px;
+    border-top: 1px solid rgba(139, 126, 102, 0.3);
+    background: rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logout-link {
+    font-size: 0.85rem;
+    color: var(--color-clay-red);
+    cursor: pointer;
+}

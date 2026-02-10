@@ -8,12 +8,17 @@ Route::get('/', function () {
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard.index');
+    return view('dashboard.index', [
+        'title' => 'Dashboard'
+    ]);
 });
 Route::get('/dashboard/kasir', function () {
-    return view('dashboard.cashier-pos.index');
+    return view('dashboard.cashier-pos.index', [
+        'title' => 'Dashboard Kasir-POS'
+    ]);
 });
 Route::get('/dashboard/kasir-cafe', function () {
-    return view('dashboard.cashier-cafe.index');
+    return view('dashboard.cashier-cafe.index', [
+        'title' => 'Dashboard Kasir Cafe'
+    ]);
 });
-
