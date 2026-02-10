@@ -5,7 +5,7 @@ let menuItems = [];
 let cart = [];
 let currentFilter = "all";
 
-const API_URL = "/test-response/success/transaction-item/200-get-all-transaction-item.json";
+const API_URL = "http://192.168.43.6:8002/api/transaction-items";
 const TOKEN = localStorage.getItem("token") ?? "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTkyLjE2OC40My42OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NzA2ODg3NjcsImV4cCI6MTc3MDc2MDc2NywibmJmIjoxNzcwNjg4NzY3LCJqdGkiOiI4M1k1QUZoQXhYd3N0b3JaIiwic3ViIjoiYTEwOTY3MzAtYjcyMy00NTQyLTkxYWYtOTgzZGNkMDRjNDA5IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInJvbGVzIjpbIm93bmVyIl0sInBlcm1pc3Npb25zIjpbInVzZXIuKiIsIm91dGxldC4qIiwiY2F0ZWdvcnkuKiIsInByb2R1Y3QuKiIsImludmVudG9yeS4qIiwidHJhbnNhY3Rpb24uKiIsInJlcG9ydC4qIiwic2V0dGluZyJdfQ.RytDAU6-v4E9SN8Wh4YsoPMlm4VJIQf684wntSn5Q_A";
 
 
@@ -23,11 +23,21 @@ document.addEventListener("DOMContentLoaded", () => {
    ======================== */
 async function fetchMenuData() {
     try {
-        const response = await fetch(API_URL); 
+        const response = await fetch(API_URL, {
+            method: "GET",
+            headers: {
+                Authorization: `bearer ${TOKEN}`,
+                "Content-Type": "application/json",
+            },
+        });
 
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`); 
-        
-        const json = await response.json(); 
+        const json = await response.json();
+
+        // ✅ RULE RESMI GENERAL RESPONSE
+        if (json.statusCode >= 400 || Number(json.result.errorCode) >= 40) {
+            throw new Error(json.result.errorMessage);
+        }
+
         const rawData = json.result.data;
 
         menuItems = rawData.map((item) => {
