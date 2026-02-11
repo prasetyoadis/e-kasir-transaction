@@ -92,9 +92,11 @@
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href="#" class="text-danger">
-                            <i class="fa-solid fa-right-from-bracket"></i> Logout
-                        </a>
+                        <form id="formLogout">
+                            <button type="submit" class="text-danger">
+                                <i class="fa-solid fa-right-from-bracket"></i> Logout
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </div>

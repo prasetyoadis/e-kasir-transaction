@@ -1,22 +1,7 @@
 /* ==========================================================================
    HEADER.CSS - Layout, Notifikasi, Profil, & Responsive
    ========================================================================== */
-:root {
-    /* --- PALET WARNA --- */
-    --color-warm-white: #fffef9;
-    --color-gold: #f4c430;
-    --color-leaf-green: #6b8e43;
-    --color-earth-brown: #8b7e66;
-    --color-deep-dark: #2f2f2a;
-    --color-clay-red: #c2433d;
-    --pure-white: #ffffff;
-    --border-line: #e6e4dc;
 
-    --bg-body: var(--color-warm-white);
-    --bg-card: var(--pure-white);
-    --text-main: var(--color-deep-dark);
-    --text-muted: var(--color-earth-brown);
-}
 /* 1. CONTAINER UTAMA HEADER */
 .main-header {
     display: flex;
@@ -374,7 +359,13 @@
     padding: 8px 0;
     margin: 0;
 }
-.profile-menu-list li a {
+.profile-menu-list li button {
+    background: transparent;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+}
+.profile-menu-list li a, .profile-menu-list li button {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -384,11 +375,11 @@
     text-decoration: none;
     transition: background 0.2s;
 }
-.profile-menu-list li a:hover {
+.profile-menu-list li a:hover, .profile-menu-list li button:hover {
     background-color: #f3f4f6;
     color: #111;
 }
-.profile-menu-list li a i {
+.profile-menu-list li a i, .profile-menu-list li button i {
     font-size: 14px;
     width: 20px;
     text-align: center;
@@ -399,14 +390,14 @@
     background-color: #e5e7eb;
     margin: 8px 0;
 }
-.profile-menu-list li a.text-danger {
+.profile-menu-list li a.text-danger, .profile-menu-list li button.text-danger {
     color: #ef4444;
 }
-.profile-menu-list li a.text-danger:hover {
+.profile-menu-list li a.text-danger:hover, .profile-menu-list li button.text-danger:hover {
     background-color: #fee2e2;
     color: #b91c1c;
 }
-.profile-menu-list li a.text-danger i {
+.profile-menu-list li a.text-danger i, .profile-menu-list li button.text-danger i {
     color: #ef4444;
 }
 

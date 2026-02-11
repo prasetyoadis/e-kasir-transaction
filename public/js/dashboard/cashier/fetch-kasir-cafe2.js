@@ -41,12 +41,13 @@ async function initTransaction() {
             headers: authHeader()
         });
         const jsonTrans = await resTrans.json();
+        console.log(jsonTrans);
         if (!resTrans.ok) throw new Error(jsonTrans.result?.errorMessage || "Gagal buat transaksi");
         const trans = jsonTrans.result.data;
 
         currentTransactionId = trans.id;
         console.log("Transaction ID created:", currentTransactionId);
-        document.getElementById('order-num').textContent = `#${trans.order_num}`;
+        document.getElementById('order_num').textContent = `#${trans.order_num}`;
         // 2. POST /api/transaction/{id}/cart (Buat Cart Session)
         const resCart = await fetch(`${BASE_API_URL}/transactions/${currentTransactionId}/cart`, {
             method: "POST",

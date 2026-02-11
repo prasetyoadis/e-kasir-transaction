@@ -4,8 +4,8 @@
 
     <div class="sidebar-header">
         <div class="brand-wrapper">
-            <img src="{{ asset('asset/img/kassia-logo-transparent.webp') }}" alt="Kassia">
-            <span>KASSIA</span>
+            <img src="{{ asset('asset/img/kassia-bg-trans.webp') }}" alt="Kassia" style="height: 60px">
+            {{-- <span>KASSIA</span> --}}
         </div>
         <button class="btn-close-sidebar">
             <i class="fa-solid fa-xmark"></i>
