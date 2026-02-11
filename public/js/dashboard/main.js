@@ -1,8 +1,6 @@
-const token = localStorage.getItem('token');
-
 document.addEventListener('DOMContentLoaded', async () => {
     if(localStorage.getItem('is_logged_in') === 'false'){
-        window.location.href = '/login';
+        window.location.href = 'http://127.0.0.1:8001/login';
     }
     try {
         // const response = await fetch('test-response/success/dashboard/me-admin.json');

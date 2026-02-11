@@ -1,4 +1,5 @@
 const formLogout = document.getElementById('formLogout');
+const token = localStorage.getItem('token');
 
 formLogout.addEventListener('submit', async (e) => {
     e.preventDefault();
