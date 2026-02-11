@@ -5,15 +5,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         window.location.href = '/login';
     }
     try {
-        const response = await fetch('test-response/success/dashboard/me-admin.json');
+        // const response = await fetch('test-response/success/dashboard/me-admin.json');
         
-        // const response = await fetch('http://192.168.43.6:8080/api/auth/me', {
-        //     method: 'GET',
-        //     headers: {
-        //         'Authorization': `Bearer ${token}`,
-        //         'Accept': 'application/json'
-        //     }
-        // })
+        const response = await fetch('http://192.168.43.6:8001/api/auth/me', {
+            method: 'GET',
+            headers: {
+                'Authorization': `bearer ${token}`,
+                'Accept': 'application/json'
+            }
+        })
 
         if (!response.statusCode === 200) {
             throw new Error('Gagal load user data');

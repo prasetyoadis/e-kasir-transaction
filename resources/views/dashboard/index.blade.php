@@ -1,6 +1,6 @@
 @extends('layouts.main-dashboard')
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}"> --}}
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 @endsection
@@ -48,7 +48,6 @@
     <!-- JS -->
     @section('js')
         <script src="{{ asset('js/dashboard/main.js') }}"></script>
-        <script src="{{ asset('js/auth/logout.js') }}"></script>
     @endsection
 </body>
 
